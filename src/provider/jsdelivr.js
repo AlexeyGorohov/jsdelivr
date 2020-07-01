@@ -34,6 +34,12 @@ export const jsdelivrProvider = {
     async setQueryString(queryString) {
       this.queryString = queryString;
 
+      if (queryString === '') {
+        this.resetData();
+
+        return;
+      }
+
       await this.search();
     },
 
@@ -47,6 +53,13 @@ export const jsdelivrProvider = {
       this.perPage = perPage;
 
       await this.search();
+    },
+
+    resetData() {
+      this.items = [];
+      this.page = 0;
+      this.itemsLength = 0;
+      this.itemsPerPage = 10;
     },
   },
   render() {
